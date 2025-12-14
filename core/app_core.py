@@ -48,7 +48,7 @@ async def get_user(cred: HTTPAuthorizationCredentials = Depends(security)):
     user_email: str | None = response.get("email")
     user_username: str | None = response.get("username")
     
-    return {
-        "email": user_email,
-        "username": user_username
-    }
+    return{
+            "username": user_username,
+            "email": user_email
+        }
