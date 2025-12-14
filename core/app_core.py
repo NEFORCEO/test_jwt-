@@ -2,7 +2,7 @@ from core.jwt_core import decoded_token, encoded_token
 from pydantic import EmailStr
 import random
 from fastapi.responses import JSONResponse
-from fastapi import Depends, status, HTTPException
+from fastapi import Depends, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jwt import PyJWTError
 

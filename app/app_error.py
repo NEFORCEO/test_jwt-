@@ -4,7 +4,7 @@ from fastapi.exceptions import ResponseValidationError
 from fastapi.exceptions import RequestValidationError
 
 
-async def handler_app(app: FastAPI):
+async def handler_app(app: FastAPI) -> None:
 
     @app.exception_handler(RequestValidationError)
     async def request_handler(
@@ -24,3 +24,4 @@ async def handler_app(app: FastAPI):
                 "message": "Opps error app, sorry user",
             },
         )
+    
