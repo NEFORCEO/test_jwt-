@@ -2,7 +2,7 @@ import jwt
 from config import settings
 
 
-async def encode_token(
+async def encoded_token(
     payload: dict,
     private_key: str = settings.config.private_key,
     algorithm: str = settings.config.algoritm,
