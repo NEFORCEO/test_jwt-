@@ -3,7 +3,7 @@ from typing import AsyncGenerator
 
 from fastapi import FastAPI
 
-from app.helper_app import hellper_app
+from .helper_app import hellper_app
 
 
 @asynccontextmanager

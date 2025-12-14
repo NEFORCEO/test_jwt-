@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.lifespan import lifespan
+from .lifespan import lifespan
 
 
 def create_app() -> FastAPI:
