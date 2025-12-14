@@ -4,8 +4,8 @@ from config import settings
 
 async def encoded_token(
     payload: dict,
-    private_key: str | None = settings.config.private_key,
-    algorithm: str | None  = settings.config.algorithm,
+    private_key: str | None = settings.private_key,
+    algorithm: str | None  = settings.algorithm,
 ) -> str:
     
     encode_token = jwt.encode(payload=payload, key=private_key, algorithm=algorithm)
@@ -14,8 +14,8 @@ async def encoded_token(
 
 async def decoded_token(
     token: str | bytes,
-    private_key: str | None = settings.config.private_key,
-    algorithm: str | None  = settings.config.algorithm,
+    private_key: str | None = settings.private_key,
+    algorithm: str | None  = settings.algorithm,
 ) -> dict:
     if algorithm is None:
         raise ValueError("Algorithm is None")
