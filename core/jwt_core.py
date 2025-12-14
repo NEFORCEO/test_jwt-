@@ -14,7 +14,7 @@ async def encoded_token(
 async def decoded_token(
     token: str | bytes,
     private_key: str | None = settings.config.private_key,
-    algorithm: str | None = settings.config.algorithm,
+    algorithm: str | None  = settings.config.algorithm,
 ):
     decode_token = jwt.decode(jwt=token, key=private_key, algorithms=[algorithm])
     return decode_token
