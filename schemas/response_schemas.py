@@ -1,4 +1,12 @@
 from pydantic import BaseModel, EmailStr
+from datetime import datetime
+
+class IndexSchema(BaseModel):
+    ping: str 
+    time: datetime
+
+
+
 
 class LoginSchema(BaseModel):
     token: str 
@@ -15,4 +23,5 @@ class MeSchema(BaseModel):
 
 class TestSchema(BaseModel):
     result: bool
+
 

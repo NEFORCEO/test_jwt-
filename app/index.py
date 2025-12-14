@@ -1,11 +1,15 @@
+from datetime import datetime
+
 
 from fastapi import FastAPI, status
 from fastapi.responses import JSONResponse
-from datetime import datetime
+
+from schemas.response_schemas import IndexSchema
+
 
 async def index_app(app: FastAPI) -> None:
-    @app.get('/')
-    async def index():
+    @app.get('/', tags=["INDEX APP"], response_model=IndexSchema)
+    async def index() -> JSONResponse:
         return JSONResponse(
             status_code=status.HTTP_200_OK,
             content={
