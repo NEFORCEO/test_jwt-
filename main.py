@@ -1,3 +1,4 @@
-from fastapi import FastAPI
+from app.create_app import create_app
 
-app = FastAPI()
+main_app = create_app()
+
