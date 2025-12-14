@@ -9,7 +9,7 @@ load_dotenv()
 
 class Config(BaseModel):
     private_key: str | None = os.getenv("PRIVATE_KEY")
-    algoritm: str | None = os.getenv("ALGORITM")
+    algorithm: str | None = os.getenv("ALGORITHM")
 
 
 class Settings(BaseSettings):
