@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     private_key: str  | None  = None
     algorithm: str | None = None
-    expire: float | None  = None 
+    expire: float | None  = None
     
     model_config = SettingsConfigDict(
         env_file=".env",
