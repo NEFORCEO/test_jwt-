@@ -36,3 +36,4 @@ async def test_app(username: str, user: TestResponse  = Depends(get_user)) -> di
         return {"result": True} 
     return {"result": False}
 
+
