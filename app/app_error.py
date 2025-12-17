@@ -1,4 +1,4 @@
-from fastapi import FastAPI, status
+from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import ResponseValidationError
 from fastapi.exceptions import RequestValidationError
@@ -8,6 +8,7 @@ async def handler_app(app: FastAPI) -> None:
 
     @app.exception_handler(RequestValidationError)
     async def request_handler(
+        request: Request,
         exc: RequestValidationError,
     ):
         return JSONResponse(
@@ -16,7 +17,7 @@ async def handler_app(app: FastAPI) -> None:
         )
 
     @app.exception_handler(ResponseValidationError)
-    async def response_handler(exc: ResponseValidationError):
+    async def response_handler(request: Request,exc: ResponseValidationError):
         return JSONResponse(
             status_code=status.HTTP_418_IM_A_TEAPOT,
             content={

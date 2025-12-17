@@ -12,7 +12,10 @@ router = APIRouter(prefix="/jwt", tags=["JWT AUTH"])
 
 @router.post("/login", response_model=LoginSchema)
 async def login_app(username: str, email: EmailStr):
-    return await create_token(username=username, email=email)
+    return await create_token(
+        username=username,
+        email=email
+    )
 
 
 @router.post("/decode", response_model=DecodeSchema)
@@ -32,3 +35,4 @@ async def test_app(username: str, user: TestResponse  = Depends(get_user)) -> di
     if username == user["username"]:
         return {"result": True} 
     return {"result": False}
+

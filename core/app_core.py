@@ -1,12 +1,14 @@
-from core.jwt_core import decoded_token, encoded_token
-from pydantic import EmailStr
+from datetime import datetime, timedelta
 import random
+
+from pydantic import EmailStr
 from fastapi.responses import JSONResponse
 from fastapi import Depends, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from jwt import PyJWTError
+from jwt import InvalidTokenError
 
-
+from core.jwt_core import decoded_token, encoded_token
+from config import settings
 
 security = HTTPBearer()
 
@@ -19,6 +21,7 @@ async def create_token(username: str, email: EmailStr) -> JSONResponse:
             "sub": str(random.randint(100000, 999999)),
             "username": username,
             "email": email,
+            "exp": datetime.utcnow() + timedelta(minutes=settings.expire)
         }
     )
     return JSONResponse(
@@ -39,7 +42,7 @@ async def get_user(cred: HTTPAuthorizationCredentials = Depends(security)):
 
     try:
         response = await decoded_token(token=token)
-    except PyJWTError:
+    except InvalidTokenError:
         return JSONResponse(
             status_code=status.HTTP_401_UNAUTHORIZED,
             content={"message": "Invalid Token"}
@@ -52,3 +55,5 @@ async def get_user(cred: HTTPAuthorizationCredentials = Depends(security)):
             "username": user_username,
             "email": user_email
         }
+    
+    
